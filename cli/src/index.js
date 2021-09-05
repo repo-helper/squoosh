@@ -167,7 +167,8 @@ async function processFiles(files) {
       if (!program.opts()[encName]) {
         continue;
       }
-      const encParam = program.opts()[encName];
+      let encParam = program.opts()[encName];
+      if (encParam === true) {encParam = 'auto'} // Support bare arguments
       const encConfig =
         encParam.toLowerCase() === 'auto' ? 'auto' : JSON5.parse(encParam);
       encodeOptions[encName] = encConfig;
